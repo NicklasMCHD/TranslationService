@@ -1,0 +1,6 @@
+These are the return codes for the results you can get.
+1001 - No parameters supplied.
+1002 - No target language sent.
+1003 - No text sent.
+1004 - Invalid translation provider
+
