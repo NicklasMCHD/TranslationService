@@ -9,5 +9,5 @@ import requests_cache
 
 print("Setting up cache")
 requests_cache.install_cache('translation.cache', backend='sqlite')
-web = WebService("localhost", 8081)
+web = WebService("localhost", 11000)
 web.start()
