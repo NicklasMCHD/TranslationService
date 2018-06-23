@@ -4,20 +4,20 @@ import sys
 sys.dont_write_bytecode = True
 
 from TranslationService import *
-import BaseHTTPServer, threading, urlparse
+import BaseHTTPServer, threading, urlparse, json
 
 # The type of messages.
-EMPTY_REQUEST = '["status":"error", "message":"No parameters supplied", "code":1001]'
-TARGET_LANGUAGE_NOT_SPECIFIED = '["status":"error","message":"Target language not specified.", "code":1002]'
-NO_TEXT_SENT = '["status":"error","message":"No text sent for translation.","code":1003]'
-INVALID_PROVIDER = '["status":"error","message":"Invalid translation provider","code":1004]'
+EMPTY_REQUEST = '{"status":"error", "message":"No parameters supplied", "code":1001}'
+TARGET_LANGUAGE_NOT_SPECIFIED = '{"status":"error", "message":"Target language not specified.", "code":1002}'
+NO_TEXT_SENT = '{"status":"error", "message":"No text sent for translation.", "code":1003}'
+INVALID_PROVIDER = '{"status":"error", "message":"Invalid translation provider", "code":1004}'
 
 valid_providers = {'yandex'}
 
 class TranslationRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 	def do_GET(s):
 		s.send_response(200)
-		s.send_header("Content-type", "text/json")
+		s.send_header("Content-type", "application/json; charset=utf-8")
 		s.end_headers()
 		raw_request = line = s.path.translate(None, '?/')
 		if raw_request == "":
@@ -56,7 +56,7 @@ class WebService(threading.Thread):
 		try:
 			self.httpd.serve_forever()
 		except KeyboardInterrupt:
-			pass
+			print "Closing"
+		finally:
 			self.httpd.server_close()
-			# close everything here
-			sys.exit()
+		sys.exit()

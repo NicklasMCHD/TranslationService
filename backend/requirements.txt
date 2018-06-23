@@ -1,1 +1,2 @@
 yandex.translate
+requests-cache

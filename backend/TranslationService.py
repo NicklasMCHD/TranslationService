@@ -22,4 +22,4 @@ def translate_now(s, raw_text, from_language, target_language, provider):
 
 def write_result(s, raw_text, result):
 	translated_text = result[0]
-	s.wfile.write('["status":"success","original":"'+raw_text+'","translation":'+translated_text+']')
+	s.wfile.write('{"status":"success", "original":"'+raw_text+'", "translation":"'+translated_text+'"}')
