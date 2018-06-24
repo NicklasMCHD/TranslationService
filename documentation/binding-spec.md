@@ -22,6 +22,7 @@ The cache need to save the successful responses from the api. From the response 
 * Original text.
 * Targeted language.
 * Translated text.
+* provider
 
 In addition the end developer (the one using the binding) needs to be able to specify a custom path for the local cache (but the default should be where the program was invoked).
 
