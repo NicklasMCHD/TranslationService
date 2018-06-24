@@ -13,7 +13,7 @@ NO_TEXT_SENT = '{"status":"error", "message":"No text sent for translation.", "c
 TEXT_TOO_LARGE = '{"status":"error", "message":"Sent text exceeded the character limit.", "code":1004}'
 INVALID_PROVIDER = '{"status":"error", "message":"Invalid translation provider", "code":1005}'
 
-valid_providers = {'yandex'}
+valid_providers = {'yandex', 'google'}
 
 class TranslationRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 	def do_GET(s):
@@ -42,8 +42,10 @@ class TranslationRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 			from_language = request["from"]
 		provider = "yandex"
 		if "provider" in request:
-			if request["provider"] in valid_providers:
-				provider = request["provider"]
+			provider = request["provider"]
+		if provider not in valid_providers:
+			s.wfile.write(INVALID_PROVIDER)
+			return
 		translate_now(s, unicode(text[0:500], "utf-8"), from_language, target_language, provider)
 		return
 
