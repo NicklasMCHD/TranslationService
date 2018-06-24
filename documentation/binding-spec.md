@@ -24,9 +24,7 @@ The cache need to save the successful responses from the api. From the response 
 * Translated text.
 
 ### API url and parameters
-The TranslationService are located at the following urls:
-* http://translation.accessiware.com:11000
-* https://translation.accessiware.com:11000
+The TranslationService are located at: http://translation.accessiware.com:11000.
 
 The following parameters can be sent to the api in a get request.
 * "text" (String, required): Text to translate.
