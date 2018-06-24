@@ -10,7 +10,8 @@ import BaseHTTPServer, threading, urlparse, json
 EMPTY_REQUEST = '{"status":"error", "message":"No parameters supplied", "code":1001}'
 TARGET_LANGUAGE_NOT_SPECIFIED = '{"status":"error", "message":"Target language not specified.", "code":1002}'
 NO_TEXT_SENT = '{"status":"error", "message":"No text sent for translation.", "code":1003}'
-INVALID_PROVIDER = '{"status":"error", "message":"Invalid translation provider", "code":1004}'
+TEXT_TOO_LARGE = '{"status":"error", "message":"Sent text exceeded the character limit.", "code":1004}'
+INVALID_PROVIDER = '{"status":"error", "message":"Invalid translation provider", "code":1005}'
 
 valid_providers = {'yandex'}
 
@@ -33,6 +34,9 @@ class TranslationRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 			s.wfile.write(NO_TEXT_SENT)
 			return
 		text = request["text"]
+		if len(text) > 200:
+			s.wfile.write(TEXT_TOO_LARGE)
+			return
 		from_language = "auto"
 		if "from" in request:
 			from_language = request["from"]
