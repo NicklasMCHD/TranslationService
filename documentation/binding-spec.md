@@ -18,10 +18,12 @@ A binding should have the following flow:
 * On error it should check the 4 digit error code and raise an exception or what ever else is normally done in that language.
 
 ### Requirements for the local cache
-The cache need to save the successful responses from the api. From the response it should save the following (at least):
+The cache need to save the successful responses from the api. From the response and request that prompted the success, it should save the following (at least):
 * Original text.
 * Targeted language.
 * Translated text.
+
+In addition the end developer (the one using the binding) needs to be able to specify a custom path for the local cache (but the default should be where the program was invoked).
 
 ### API url and parameters
 The TranslationService are located at: http://translation.accessiware.com:11000.
