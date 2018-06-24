@@ -23,6 +23,17 @@ The cache need to save the successful responses from the api. From the response 
 * Targeted language.
 * Translated text.
 
+### API url and parameters
+The TranslationService are located at the following urls:
+* http://translation.accessiware.com:11000
+* https://translation.accessiware.com:11000
+
+The following parameters can be sent to the api in a get request.
+* "text" (String, required): Text to translate.
+* "target" (string, required): A 2 letter language code, that specifies what language to translate into (example: "ru").
+* "from" (string, optional if "text" are an english text, required otherwise): A 2 letter language code, that specifies what the original language for the supplied text is (example: "da").
+
+
 ### Possible API Responses
 Note: All responses are returned in the json format.
 The api responses can be divided into 2 groups. The errors and the success.
