@@ -47,6 +47,7 @@ On success the response have the following fields:
 * status: "success"
 * original: a field holding the text sent to translation.
 * translation: A field holding the translated text.
+* provider: A field holding the provider used to translated the text.
 
 ### Error Codes
 Following error codes are returned from the api.
